@@ -1,0 +1,15 @@
+[Unit]
+Description=RemoteAgentWorkbench Server
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/remote-agent-workbench/server
+EnvironmentFile=/opt/remote-agent-workbench/server/.env
+ExecStart=/usr/bin/env node /opt/remote-agent-workbench/server/dist/index.js
+Restart=always
+RestartSec=3
+User=remoteagent
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,40 @@
+.DS_Store
+__MACOSX/
+
+# Node / build outputs
+node_modules/
+dist/
+build/
+.build/
+DerivedData/
+coverage/
+*.tgz
+
+# Local and generated state
+.tmp/
+*.xcuserstate
+xcuserdata/
+
+# Patch / merge leftovers
+*.rej
+*.orig
+
+# Local SQLite control-plane databases
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.sqlite-journal
+
+# Logs & request journals
+*.log
+
+# Secrets / local runtime configuration
+.env
+.env.*
+*.env
+runner/.env.production
+server/.env.production
+
+# Keep safe templates tracked
+!.env.example
+!**/.env.example

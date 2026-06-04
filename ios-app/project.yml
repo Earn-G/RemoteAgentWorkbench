@@ -1,0 +1,113 @@
+name: RemoteAgentWorkbench
+
+options:
+  bundleIdPrefix: com.remoteagentworkbench
+  deploymentTarget:
+    iOS: 17.0
+    macOS: 14.0
+
+settings:
+  base:
+    PRODUCT_NAME: RemoteAgentWorkbench
+    SWIFT_VERSION: 5.0
+    DEVELOPMENT_TEAM: ""
+    GENERATE_INFOPLIST_FILE: NO
+
+packages:
+  Moya:
+    url: https://github.com/Moya/Moya.git
+    from: 15.0.3
+  MarkdownUI:
+    url: https://github.com/gonzalezreal/swift-markdown-ui
+    from: 2.4.1
+
+schemes:
+  RemoteAgentWorkbench:
+    build:
+      targets:
+        RemoteAgentWorkbench: all
+        RemoteAgentWorkbenchTests: [test]
+    test:
+      targets:
+        - RemoteAgentWorkbenchTests
+      gatherCoverageData: false
+    run:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+  RemoteAgentWorkbenchMac:
+    build:
+      targets:
+        RemoteAgentWorkbenchMac: all
+    run:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+targets:
+  RemoteAgentWorkbench:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - RemoteAgentWorkbench
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.remoteagentworkbench.RemoteAgentWorkbench
+        INFOPLIST_FILE: RemoteAgentWorkbench/App/Info.plist
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: NO
+        CODE_SIGN_STYLE: Automatic
+        ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: YES
+    dependencies:
+      - package: Moya
+        product: Moya
+      - package: Moya
+        product: CombineMoya
+      - package: MarkdownUI
+        product: MarkdownUI
+  RemoteAgentWorkbenchTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - RemoteAgentWorkbenchTests
+    settings:
+      base:
+        PRODUCT_NAME: RemoteAgentWorkbenchTests
+        PRODUCT_MODULE_NAME: RemoteAgentWorkbenchTests
+        PRODUCT_BUNDLE_IDENTIFIER: com.remoteagentworkbench.RemoteAgentWorkbenchTests
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: RemoteAgentWorkbench
+
+  RemoteAgentWorkbenchMac:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: RemoteAgentWorkbenchMac
+      - path: RemoteAgentWorkbench/App/AppModel.swift
+      - path: RemoteAgentWorkbench/App/AppSettings.swift
+      - path: RemoteAgentWorkbench/Core
+      - path: RemoteAgentWorkbench/Shared/UI
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.remoteagentworkbench.RemoteAgentWorkbenchMac
+        INFOPLIST_FILE: RemoteAgentWorkbenchMac/App/Info.plist
+        CODE_SIGN_STYLE: Automatic
+    dependencies:
+      - package: Moya
+        product: Moya
+      - package: Moya
+        product: CombineMoya
+      - package: MarkdownUI
+        product: MarkdownUI

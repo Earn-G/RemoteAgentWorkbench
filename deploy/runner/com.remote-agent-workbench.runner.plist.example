@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.remoteagentworkbench.runner</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-lc</string>
+        <string>HOST_CONFIG_FILE="${RUNNER_HOST_CONFIG_FILE:-$HOME/RemoteAgentWorkbenchData/runner-host.env}"; if [[ -f "${HOST_CONFIG_FILE}" ]]; then set -a; source "${HOST_CONFIG_FILE}"; set +a; fi; WORKBENCH_ROOT="${WORKBENCH_ROOT:-$HOME/Code/RemoteAgentWorkbench}"; WORKBENCH_LOG_ROOT="${WORKBENCH_LOG_ROOT:-$HOME/Library/Logs/RemoteAgentWorkbench}"; mkdir -p "${WORKBENCH_LOG_ROOT}"; exec "${WORKBENCH_ROOT}/deploy/runner/run-runner.sh" >> "${WORKBENCH_LOG_ROOT}/runner.stdout.log" 2>> "${WORKBENCH_LOG_ROOT}/runner.stderr.log"</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+</dict>
+</plist>

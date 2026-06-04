@@ -1,0 +1,14 @@
+[
+  {
+    "id": "sample_project",
+    "name": "Sample Project",
+    "repo": "~/Code/sample-project",
+    "baseBranch": "main",
+    "deliveryMode": "review_required",
+    "autoPush": true,
+    "defaultTaskTitle": "Continue sample project task",
+    "defaultPrompt": "Implement the requested change, run the most relevant checks, and follow the selected Git workflow.",
+    "isFeatured": true,
+    "reportNamespace": "samples/sample-project"
+  }
+]
